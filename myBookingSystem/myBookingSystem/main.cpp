@@ -3,7 +3,7 @@
 
 int main() {
 
-	void drawScene();
+	drawScene();
 
 	return 0;
 }
