@@ -3,9 +3,9 @@
 #include <vector>
 #include "show.h"
 
-class Hall {
+class hall {
 public:
-    Hall(const std::string& name, int capacity);
+    hall(const std::string& name, int capacity);
 
     void addShow(const show& show);
     std::string getName() const;
