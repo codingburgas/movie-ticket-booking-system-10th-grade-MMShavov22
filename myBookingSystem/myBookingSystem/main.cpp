@@ -3,6 +3,7 @@
 
 int main() {
 
+	fullScreen();
 	drawScene();
 
 	return 0;

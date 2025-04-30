@@ -18,39 +18,15 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clear.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cinema.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cinema.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="hall.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="movie.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="show.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="windowManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="visuals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="manager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="hall.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="movie.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="show.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

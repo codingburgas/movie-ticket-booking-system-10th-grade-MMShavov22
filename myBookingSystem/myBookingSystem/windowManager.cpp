@@ -1,19 +1,18 @@
 #include <iostream>
+#include <fstream>
 #include "manager.h"
 
-void drawScene(){
-
-	std::cout << R"(
-  ______  _  _             _____        _  _      
- |  ____|(_)| |           |  __ \      | |(_)     
- | |__    _ | | _ __ ___  | |__) |___  | | _  ___ 
- |  __|  | || || '_ ` _ \ |  ___// _ \ | || |/ __|
- | |     | || || | | | | || |   | (_) || || |\__ \
- |_|     |_||_||_| |_| |_||_|    \___/ |_||_||___/     
-		     1.Menu
-		     2.menu
-		     3.menu                                          
-		)";
-
-
+void drawScene() {
+    int input;
+    print("./assets/menus/MainMenu.txt");
+    std::cin >> input;
+    switch (input) {
+    case 1:
+        break;
+    case 2:
+        break;
+    case 3:
+        exitMessage();
+        break;
+    }
 }
