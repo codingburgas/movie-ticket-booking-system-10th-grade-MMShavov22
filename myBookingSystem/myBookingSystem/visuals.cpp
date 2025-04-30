@@ -15,13 +15,13 @@ void fullScreen() {
     keybd_event(VK_MENU, 0x38, KEYEVENTF_KEYUP, 0);
 }
 
-void printLogo(const std::string& filename) {
+void print(const std::string& filename) {
     clearScreen();
     std::cout << "\n\n\n\n\n\n\n\n";
 
     std::ifstream file(filename);
     if (!file) {
-        centerText("Error: Could not open logo file!");
+        centerText("Error: Could not open file!");
         return;
     }
 

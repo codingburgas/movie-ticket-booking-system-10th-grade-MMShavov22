@@ -7,7 +7,7 @@
 void drawScene();
 void clearScreen();
 void fullScreen();
-void printLogo(const std::string& filename);
+void print(const std::string& filename);
 void paddingUp(int paddingSize);
 int getConsoleWidth();
 void centerText(std::string text);
