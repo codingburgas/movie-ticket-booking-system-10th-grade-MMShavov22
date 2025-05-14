@@ -5,6 +5,7 @@
 #include <windows.h>
 
 void drawScene();
+void drawLoginMenu();
 void clearScreen();
 void fullScreen();
 void print(const std::string& filename);

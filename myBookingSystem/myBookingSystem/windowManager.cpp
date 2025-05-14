@@ -4,15 +4,22 @@
 
 void drawScene() {
     int input;
-    print("./assets/menus/MainMenu.txt");
-    std::cin >> input;
-    switch (input) {
+    bool logInRegister = 0;
+    drawLoginMenu();
+    switch (logInRegister) {
+    case 0:
+
+        break;
     case 1:
-        break;
-    case 2:
-        break;
-    case 3:
-        exitMessage();
-        break;
+        std::cin >> input;
+        switch (input) {
+        case 1:
+            break;
+        case 2:
+            break;
+        case 3:
+            exitMessage();
+            break;
+        }
     }
 }
