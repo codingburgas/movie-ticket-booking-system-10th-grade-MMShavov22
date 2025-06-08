@@ -38,3 +38,8 @@ void BookingSystem::completeBooking(int cityChoice, int cinemaChoice, int movieC
     std::cout << "Booking completed successfully!\n";
     std::cout << "Seats booked: " << bookedSeats.size() << "\n";
 }
+
+double BookingSystem::calculateTotalPrice(const std::vector<Seat>& selectedSeats) {
+    const double pricePerSeat = 10.0; 
+    return selectedSeats.size() * pricePerSeat;
+}

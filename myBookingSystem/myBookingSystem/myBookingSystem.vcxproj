@@ -128,7 +128,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bookingSystem.cpp" />
-    <ClCompile Include="functions.cpp" />
     <ClCompile Include="loginMenu.cpp" />
     <ClCompile Include="loginValid.cpp" />
     <ClCompile Include="main.cpp" />
@@ -136,11 +135,9 @@
     <ClCompile Include="seatingManager.cpp" />
     <ClCompile Include="userManager.cpp" />
     <ClCompile Include="visuals.cpp" />
-    <ClCompile Include="windowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bookingSystem.h" />
-    <ClInclude Include="functions.h" />
     <ClInclude Include="loginMenu.h" />
     <ClInclude Include="loginValid.h" />
     <ClInclude Include="manager.h" />

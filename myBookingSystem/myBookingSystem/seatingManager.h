@@ -1,12 +1,6 @@
 #pragma once
 
-#include "seat.h"
-#include <vector>
-
-class SeatingLayout {
-public:
-    std::vector<std::vector<Seat>> seats;
-};
+#include "structs.h"
 
 class SeatingManager {
 public:

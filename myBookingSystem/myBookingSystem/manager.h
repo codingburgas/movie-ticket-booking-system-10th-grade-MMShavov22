@@ -4,8 +4,8 @@
 #include <string>
 #include <sstream>
 #include <windows.h>
+#include <vector>
 
-void drawScene();
 void exitMessage();
 void centerText(std::string text);
 void clearScreen();

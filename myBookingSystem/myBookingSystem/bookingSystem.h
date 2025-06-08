@@ -12,4 +12,5 @@ public:
     int selectMovie(int genreChoice);
     void printBookingDetails(int cityChoice, int cinemaChoice, int movieChoice);
     void completeBooking(int cityChoice, int cinemaChoice, int movieChoice, const std::vector<Seat>& bookedSeats, bool isOnlineCustomer);
+    double calculateTotalPrice(const std::vector<Seat>& selectedSeats);
 };

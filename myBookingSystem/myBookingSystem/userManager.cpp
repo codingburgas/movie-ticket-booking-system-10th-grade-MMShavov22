@@ -1,4 +1,5 @@
 #include "userManager.h"
+#include "manager.h"
 
 void createNewUser(const std::string& username, const std::string& password) {
     std::ofstream file("users.csv", std::ios::app);
