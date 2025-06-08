@@ -59,3 +59,22 @@ void exitMessage() {
     paddingUp(2);
     system("pause >nul");
 }
+
+std::string getLineFromFile(const std::string& path, int lineNumber) {
+    std::ifstream file(path);
+    std::string line;
+    int current = 1;
+    while (std::getline(file, line)) {
+        if (current == lineNumber) return line;
+        ++current;
+    }
+    return "";
+}
+
+void printFile(const std::string& path) {
+    std::ifstream file(path);
+    std::string line;
+    while (std::getline(file, line)) {
+        std::cout << line << std::endl;
+    }
+}

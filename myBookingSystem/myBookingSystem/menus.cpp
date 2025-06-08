@@ -3,6 +3,7 @@
 #include "loginValid.h"
 #include "userManager.h"
 #include "manager.h"
+#include <fstream>
 
 void mainMenu() {
     BookingSystem bookingSystem;
@@ -69,4 +70,9 @@ void mainMenu() {
             clearScreen();
         }
     }
+}
+
+void showMainMenu() {
+    printFile("assets/menus/mainMenu.txt");
+    std::cout << "Choose an option: ";
 }

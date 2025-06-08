@@ -2,47 +2,17 @@
 #include "bookingSystem.h"
 #include "structs.h"
 #include "userManager.h"
-
-// Utility to print a text file to the console
-void printFile(const std::string& path) {
-    std::ifstream file(path);
-    std::string line;
-    while (std::getline(file, line)) {
-        std::cout << line << std::endl;
-    }
-}
-
-// Reads a specific line from a file (1-based index)
-std::string getLineFromFile(const std::string& path, int lineNumber) {
-    std::ifstream file(path);
-    std::string line;
-    int current = 1;
-    while (std::getline(file, line)) {
-        if (current == lineNumber) return line;
-        ++current;
-    }
-    return "";
-}
-
-void showMainMenu() {
-    printFile("assets/menus/mainMenu.txt");
-    std::cout << "Choose an option: ";
-}
-
-void bookSeat() {
-    // Placeholder for booking logic
-    std::cout << "Booking a seat... (functionality not implemented yet)\n";
-}
+#include <limits>
 
 int main() {
+	fullScreen();
+
     std::string username, password;
     bool loggedIn = false;
 
-    // Show logo
     printFile("assets/menus/logo.txt");
 
     while (!loggedIn) {
-        // Show login menu prompts from file
         std::string loginPromptUser = getLineFromFile("assets/menus/loginMenu.txt", 1);
         std::string loginPromptPass = getLineFromFile("assets/menus/loginMenu.txt", 2);
         std::string userNotFoundMsg = getLineFromFile("assets/menus/loginMenu.txt", 3);

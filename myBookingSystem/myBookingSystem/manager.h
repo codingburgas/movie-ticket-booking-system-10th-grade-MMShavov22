@@ -5,6 +5,7 @@
 #include <sstream>
 #include <windows.h>
 #include <vector>
+#include <limits>
 
 void exitMessage();
 void centerText(std::string text);
