@@ -55,7 +55,7 @@ void centerText(std::string text) {
 void exitMessage() {
     clearScreen();
     paddingUp(2);
-    centerText("Thank you for using the program!");
+    centerText("Thank you for using FilmPolis!");
     paddingUp(2);
     system("pause >nul");
 }
