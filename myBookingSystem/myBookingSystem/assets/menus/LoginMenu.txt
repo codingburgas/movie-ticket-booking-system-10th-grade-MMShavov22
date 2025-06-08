@@ -1,0 +1,4 @@
+Please enter your username:
+Please enter your password:
+Username not found! Please try again!
+Incorrect password! Try again!
