@@ -1,5 +1,10 @@
 #include "bookingSystem.h"
 #include "manager.h"
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+#include <algorithm>
 
 int BookingSystem::selectCity() {
     std::cout << "Select a city:\n1. Burgas\n2. Varna\n3. Sofiq\n";
@@ -25,7 +30,7 @@ int BookingSystem::selectGenre() {
 int BookingSystem::selectMovie(int genreChoice) {
     std::vector<std::string> movies;
     switch (genreChoice) {
-    case 1: 
+    case 1:
         movies = {
             "Die Hard",
             "Mad Max: Fury Road",
@@ -43,7 +48,7 @@ int BookingSystem::selectMovie(int genreChoice) {
             "Groundhog Day"
         };
         break;
-    case 3: 
+    case 3:
         movies = {
             "The Shawshank Redemption",
             "Forrest Gump",
@@ -81,25 +86,76 @@ void BookingSystem::completeBooking(int cityChoice, int cinemaChoice, int movieC
 }
 
 double BookingSystem::calculateTotalPrice(const std::vector<Seat>& selectedSeats) {
-    const double pricePerSeat = 10.0; 
+    const double pricePerSeat = 10.0;
     return selectedSeats.size() * pricePerSeat;
+}
+
+
+std::string sanitize(const std::string& s) {
+    std::string out = s;
+    std::replace(out.begin(), out.end(), ' ', '_');
+    return out;
+}
+
+
+void saveSeatsToFile(const std::string& city, const std::string& cinema, const std::string& movie,
+    const std::vector<std::vector<Seat>>& seats, const std::string& filename) {
+    
+    std::ifstream in(filename);
+    std::vector<std::string> lines;
+    std::string line;
+    std::string key = sanitize(city) + "|" + sanitize(cinema) + "|" + sanitize(movie) + "|";
+    while (std::getline(in, line)) {
+        
+        if (line.substr(0, key.size()) != key) {
+            lines.push_back(line);
+        }
+    }
+    in.close();
+
+   
+    for (const auto& row : seats) {
+        for (const auto& seat : row) {
+            std::ostringstream oss;
+            oss << sanitize(city) << "|" << sanitize(cinema) << "|" << sanitize(movie) << "|"
+                << seat.row << " " << seat.col << " " << seat.type << " " << seat.isBooked;
+            lines.push_back(oss.str());
+        }
+    }
+
+   
+    std::ofstream out(filename, std::ios::trunc);
+    for (const auto& l : lines) {
+        out << l << "\n";
+    }
+}
+
+
+void loadSeatsFromFile(const std::string& city, const std::string& cinema, const std::string& movie,
+    std::vector<std::vector<Seat>>& seats, const std::string& filename) {
+    std::ifstream in(filename);
+    if (!in) return;
+    std::string line;
+    std::string key = sanitize(city) + "|" + sanitize(cinema) + "|" + sanitize(movie) + "|";
+    while (std::getline(in, line)) {
+        if (line.substr(0, key.size()) == key) {
+            std::istringstream iss(line.substr(key.size()));
+            int row, col, typeInt;
+            bool isBooked;
+            if (iss >> row >> col >> typeInt >> isBooked) {
+                if (row > 0 && col > 0 && row <= (int)seats.size() && col <= (int)seats[0].size()) {
+                    seats[row - 1][col - 1].isBooked = isBooked;
+                    seats[row - 1][col - 1].type = static_cast<SeatType>(typeInt);
+                }
+            }
+        }
+    }
 }
 
 void bookSeat() {
     BookingSystem bookingSystem;
 
-    static const int ROWS = 5, COLS = 5;
-    static std::vector<std::vector<Seat>> seats(ROWS, std::vector<Seat>(COLS));
-    static bool initialized = false;
-    if (!initialized) {
-        for (int r = 0; r < ROWS; ++r) {
-            for (int c = 0; c < COLS; ++c) {
-                seats[r][c] = Seat(r + 1, c + 1, SILVER, false);
-            }
-        }
-        initialized = true;
-    }
-
+    
     clearScreen();
     paddingUp(1);
     centerText("Welcome to the Booking System");
@@ -139,6 +195,37 @@ void bookSeat() {
         centerText("Invalid movie selection.");
         return;
     }
+
+    
+    const char* cities[] = { "Burgas", "Varna", "Sofiq" };
+    const char* cinemas[] = { "CinemaCity", "Cineby" };
+    std::vector<std::string> movies;
+    switch (genreChoice) {
+    case 1:
+        movies = { "Die Hard", "Mad Max: Fury Road", "John Wick", "The Dark Knight", "Gladiator" };
+        break;
+    case 2:
+        movies = { "Superbad", "The Hangover", "Step Brothers", "Anchorman", "Groundhog Day" };
+        break;
+    case 3:
+        movies = { "The Shawshank Redemption", "Forrest Gump", "Fight Club", "The Godfather", "A Beautiful Mind" };
+        break;
+    }
+    std::string cityName = cities[cityChoice - 1];
+    std::string cinemaName = cinemas[cinemaChoice - 1];
+    std::string movieName = movies[movieChoice - 1];
+
+    const std::string seatFile = "seatGrids.txt";
+
+    
+    const int ROWS = 5, COLS = 5;
+    std::vector<std::vector<Seat>> seats(ROWS, std::vector<Seat>(COLS));
+    for (int r = 0; r < ROWS; ++r)
+        for (int c = 0; c < COLS; ++c)
+            seats[r][c] = Seat(r + 1, c + 1, SILVER, false);
+
+    
+    loadSeatsFromFile(cityName, cinemaName, movieName, seats, seatFile);
 
     clearScreen();
     paddingUp(1);
@@ -188,28 +275,16 @@ void bookSeat() {
         return;
     }
 
-    clearScreen();
-    const char* cities[] = { "Burgas", "Varna", "Sofiq" };
-    const char* cinemas[] = { "CinemaCity", "Cineby" };
-    std::vector<std::string> movies;
-    switch (genreChoice) {
-    case 1:
-        movies = { "Die Hard", "Mad Max: Fury Road", "John Wick", "The Dark Knight", "Gladiator" };
-        break;
-    case 2:
-        movies = { "Superbad", "The Hangover", "Step Brothers", "Anchorman", "Groundhog Day" };
-        break;
-    case 3:
-        movies = { "The Shawshank Redemption", "Forrest Gump", "Fight Club", "The Godfather", "A Beautiful Mind" };
-        break;
-    }
+    
+    saveSeatsToFile(cityName, cinemaName, movieName, seats, seatFile);
 
+    clearScreen();
     paddingUp(2);
     centerText("Booking Details");
     paddingUp(1);
-    centerText("City: " + std::string(cities[cityChoice - 1]));
-    centerText("Cinema: " + std::string(cinemas[cinemaChoice - 1]));
-    centerText("Movie: " + movies[movieChoice - 1]);
+    centerText("City: " + cityName);
+    centerText("Cinema: " + cinemaName);
+    centerText("Movie: " + movieName);
     paddingUp(3);
     double totalPrice = bookingSystem.calculateTotalPrice(selectedSeats);
     centerText("Total price: $" + std::to_string(totalPrice));
