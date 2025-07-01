@@ -29,13 +29,13 @@ Burgas|CinemaCity|Die_Hard|1 3 0 0
 Burgas|CinemaCity|Die_Hard|1 4 0 0
 Burgas|CinemaCity|Die_Hard|1 5 0 0
 Burgas|CinemaCity|Die_Hard|2 1 0 0
-Burgas|CinemaCity|Die_Hard|2 2 0 0
+Burgas|CinemaCity|Die_Hard|2 2 0 1
 Burgas|CinemaCity|Die_Hard|2 3 0 0
 Burgas|CinemaCity|Die_Hard|2 4 0 0
 Burgas|CinemaCity|Die_Hard|2 5 0 0
 Burgas|CinemaCity|Die_Hard|3 1 0 0
 Burgas|CinemaCity|Die_Hard|3 2 0 0
-Burgas|CinemaCity|Die_Hard|3 3 0 0
+Burgas|CinemaCity|Die_Hard|3 3 0 1
 Burgas|CinemaCity|Die_Hard|3 4 0 0
 Burgas|CinemaCity|Die_Hard|3 5 0 0
 Burgas|CinemaCity|Die_Hard|4 1 0 0

@@ -4,3 +4,4 @@ void mainMenu();
 void signUp();
 void logIn();
 void logInScreen();
+void Start();
